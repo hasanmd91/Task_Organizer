@@ -1,35 +1,18 @@
-import React from "react";
-import { useState } from "react";
-import "./App.css";
-import Inputfield from "./Components/Inputfield";
-import { Todo } from "./Modal";
-import Todolist from "./Components/Todolist";
+import React, { useEffect } from "react";
+import { initializeTasks } from "./rtk/features/tasks/tasksSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { Action } from "redux";
 
 const App: React.FC = () => {
-  const [todo, setTodo] = useState<string>("");
-  const [todos, setTodos] = useState<Todo[]>([]);
+  const dispatch: any = useDispatch();
+  const tasksList = useSelector((state: any) => state.tasks.tasks);
+  console.log(tasksList);
 
-  const submitHandeler = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (todo) {
-      setTodos([...todos, { _id: Date.now(), todo: todo, isDone: false }]);
-      setTodo("");
+  useEffect(() => {
+    dispatch(initializeTasks());
+  }, [dispatch]);
 
-      console.log(todos);
-    }
-  };
-
-  return (
-    <div className="App">
-      <span className="heading "> Taska </span>
-      <Inputfield
-        todo={todo}
-        setTodo={setTodo}
-        submitHandeler={submitHandeler}
-      />
-      <Todolist todos={todos} setTodos={setTodos} />
-    </div>
-  );
+  return <div> App</div>;
 };
 
 export default App;
