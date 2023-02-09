@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getAll } from "../../../services/api";
+
+import { getAll, Create } from "../../../services/api";
 
 // initialState
 
@@ -16,8 +17,12 @@ const tasksSlice = createSlice({
       state.tasks = action.payload;
     },
 
+    createAtask(state, action) {
+      state.tasks = [...state.tasks, action.payload];
+    },
+
     isLoading(state) {
-      state.isLoading = !state.isLoading.length;
+      state.isLoading = false;
     },
   },
 });
@@ -32,6 +37,14 @@ export const initializeTasks = () => {
   };
 };
 
-export default tasksSlice.reducer;
+// create a task
 
-export const { getTasks, isLoading } = tasksSlice.actions;
+export const createTask = (newtask) => {
+  return async (dispatch) => {
+    const task = await Create(newtask);
+    dispatch(createAtask(task));
+  };
+};
+
+export default tasksSlice.reducer;
+export const { getTasks, isLoading, createAtask } = tasksSlice.actions;

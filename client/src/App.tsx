@@ -1,18 +1,48 @@
-import React, { useEffect } from "react";
-import { initializeTasks } from "./rtk/features/tasks/tasksSlice";
+import React, { useEffect, useState } from "react";
+import { initializeTasks, createTask } from "./rtk/features/tasks/tasksSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { Action } from "redux";
+
+interface tasks {
+  title: string;
+}
 
 const App: React.FC = () => {
   const dispatch: any = useDispatch();
   const tasksList = useSelector((state: any) => state.tasks.tasks);
-  console.log(tasksList);
+  const isLoading = useSelector((state: any) => state.tasks.isLoading);
+
+  // console.log(tasksList);
+
+  const [newTask, setNewTask] = useState<tasks>({
+    title: "",
+  });
+
+  const submitHandeler = (e: any) => {
+    e.preventDefault();
+    dispatch(createTask(newTask));
+  };
 
   useEffect(() => {
     dispatch(initializeTasks());
   }, [dispatch]);
 
-  return <div> App</div>;
+  if (isLoading) return <div>Loading...</div>;
+  else
+    return (
+      <div>
+        <form onSubmit={submitHandeler}>
+          <input
+            type="text"
+            name="title"
+            value={newTask.title}
+            onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
+          />
+          <button type="submit"> Sumbit</button>
+        </form>
+
+        <div>{tasksList.map((tsk: any) => console.log(tsk))}</div>
+      </div>
+    );
 };
 
 export default App;
