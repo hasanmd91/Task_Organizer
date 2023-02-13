@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { initializeTasks, createTask } from "./rtk/features/tasks/tasksSlice";
 import { useAppDispatch, useAppSelector } from "./rtk/app/hooks";
+import InputField from "./Components/InputField";
 
-interface task {
+export interface task {
   title: string;
 }
 
@@ -17,7 +18,7 @@ const App: React.FC = () => {
     title: "",
   });
 
-  const submitHandeler = (e: React.FormEvent<HTMLFormElement>) => {
+  const submitHandeler = (e: React.FormEvent) => {
     e.preventDefault();
     dispatch(createTask(newTask));
   };
@@ -30,17 +31,11 @@ const App: React.FC = () => {
   else
     return (
       <div>
-        <form onSubmit={submitHandeler}>
-          <input
-            type="text"
-            name="title"
-            value={newTask.title as string}
-            onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
-          />
-          <button type="submit"> Sumbit</button>
-        </form>
-
-        <div>{tasksList.map((tsk: task): any => console.log(tsk))}</div>
+        <InputField
+          newTask={newTask}
+          setNewTask={setNewTask}
+          handleAdd={submitHandeler}
+        />
       </div>
     );
 };
