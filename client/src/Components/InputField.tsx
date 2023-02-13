@@ -5,17 +5,17 @@ import { task } from "../App";
 interface props {
   newTask: task;
   setNewTask: React.Dispatch<React.SetStateAction<task>>;
-  handleAdd: (e: React.FormEvent) => void;
+  handelSubmit: (e: React.FormEvent) => void;
 }
 
-const InputField: React.FC<props> = ({ newTask, setNewTask, handleAdd }) => {
+const InputField: React.FC<props> = ({ newTask, setNewTask, handelSubmit }) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   return (
     <form
       className="input"
       onSubmit={(e) => {
-        handleAdd(e);
+        handelSubmit(e);
         inputRef.current?.blur();
       }}
     >
@@ -25,7 +25,7 @@ const InputField: React.FC<props> = ({ newTask, setNewTask, handleAdd }) => {
         value={newTask.title as string}
         onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
         ref={inputRef}
-        className="input__box"
+        className="input_box"
       />
       <button type="submit" className="input_submit">
         GO
