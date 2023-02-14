@@ -4,8 +4,8 @@ import { AnyAction } from "redux";
 import { ThunkAction } from "redux-thunk";
 import { RootState } from "../../app/store";
 interface Task {
+  [x: string]: string;
   title: string;
-  _id: string;
 }
 
 interface TaskState {

@@ -2,13 +2,17 @@ import React from "react";
 import { useAppSelector } from "../rtk/app/hooks";
 import SingleTask from "./SingleTask";
 
-const TaskList: React.FC = () => {
+interface props {
+  setCurrenId: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const TaskList: React.FC<props> = ({ setCurrenId }) => {
   const tasksList = useAppSelector((state) => state.tasks.tasks);
 
   return (
     <div className="tasks">
       {tasksList.map((task) => (
-        <SingleTask taskProps={task} />
+        <SingleTask taskProps={task} setCurrenId={setCurrenId} />
       ))}
     </div>
   );

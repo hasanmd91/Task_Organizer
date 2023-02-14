@@ -7,16 +7,17 @@ import { deleteTask } from "../rtk/features/tasks/tasksSlice";
 
 interface props {
   taskProps: task;
+  setCurrenId: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const SingleTask: React.FC<props> = ({ taskProps }) => {
+const SingleTask: React.FC<props> = ({ taskProps, setCurrenId }) => {
   const dispatch = useAppDispatch();
   return (
     <form className="task_single">
       <span className="task_single_text ">{taskProps.title}</span>
       <div>
         <span className="icon">
-          <AiFillEdit />{" "}
+          <AiFillEdit onClick={() => setCurrenId(taskProps._id)} />
         </span>
         <span className="icon ">
           {" "}
