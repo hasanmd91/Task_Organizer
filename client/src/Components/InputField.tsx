@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import "./styles.css";
 import { task } from "../App";
 import { useAppSelector } from "../rtk/app/hooks";
@@ -21,7 +21,13 @@ const InputField: React.FC<props> = ({
     currenId ? state.tasks.tasks.find((t) => t._id === currenId) : null
   );
 
-  console.log(editableTask);
+  console.log(editableTask?.title, currenId);
+  useEffect(() => {
+    if (editableTask) {
+      setNewTask(editableTask);
+    }
+  }, [editableTask, setNewTask]);
+
   return (
     <form
       className="input"

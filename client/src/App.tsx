@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { initializeTasks, createTask } from "./rtk/features/tasks/tasksSlice";
+import {
+  initializeTasks,
+  createTask,
+  editTask,
+} from "./rtk/features/tasks/tasksSlice";
 import { useAppDispatch, useAppSelector } from "./rtk/app/hooks";
 import InputField from "./Components/InputField";
 import TaskList from "./Components/TaskList";
@@ -21,7 +25,18 @@ const App: React.FC = () => {
 
   const submitHandeler = (e: React.FormEvent) => {
     e.preventDefault();
-    dispatch(createTask(newTask));
+
+    if (currenId) {
+      dispatch(editTask(newTask, currenId));
+    } else {
+      dispatch(createTask(newTask));
+    }
+    setCurrenId("");
+    clear();
+  };
+
+  const clear = () => {
+    setNewTask({ title: "" });
   };
 
   useEffect(() => {
