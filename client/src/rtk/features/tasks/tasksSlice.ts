@@ -1,10 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { getAll, Create } from "../../../services/api";
+import { getAll, Create, Delete } from "../../../services/api";
 import { AnyAction } from "redux";
 import { ThunkAction } from "redux-thunk";
 import { RootState } from "../../app/store";
 interface Task {
   title: string;
+  _id: string;
 }
 
 interface TaskState {
@@ -29,11 +30,16 @@ const tasksSlice = createSlice({
       state.tasks = [...state.tasks, action.payload];
     },
 
+    deleteATask(state, action: PayloadAction<string>) {
+      state.tasks = state.tasks.filter((task) => task._id !== action.payload);
+    },
     isLoading(state) {
       state.isLoading = false;
     },
   },
 });
+
+//get task thunk
 
 export const initializeTasks = (): ThunkAction<
   void,
@@ -48,6 +54,8 @@ export const initializeTasks = (): ThunkAction<
   };
 };
 
+//create task thunk
+
 export const createTask = (
   newTask: Task
 ): ThunkAction<void, RootState, unknown, AnyAction> => {
@@ -57,5 +65,19 @@ export const createTask = (
   };
 };
 
+// delete task thunk
+
+export const deleteTask = (
+  id: string
+): ThunkAction<void, RootState, unknown, AnyAction> => {
+  return async (dispatch) => {
+    await Delete(id);
+    dispatch(deleteATask(id));
+  };
+};
+
+// edit task thunk
+
 export default tasksSlice.reducer;
-export const { getTasks, isLoading, createAtask } = tasksSlice.actions;
+export const { getTasks, isLoading, createAtask, deleteATask } =
+  tasksSlice.actions;

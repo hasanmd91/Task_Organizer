@@ -79,7 +79,7 @@
   color: white;
 }
 
-.todos__single {
+.task_single {
   display: flex;
   border-radius: 5px;
   padding: 20px;
@@ -92,19 +92,19 @@
   box-shadow: 0 0 20px black;
 }
 
-.todos__single:hover {
+.todos_single:hover {
   box-shadow: 0 0 5px black;
   transform: scale(1.03);
 }
 
-.todos__single--text {
+.task_single_text {
   flex: 1;
   padding: 5px;
   border: none;
   font-size: 20px;
 }
 
-.todos__single--text:focus {
+.todos_single_text:focus {
   outline: none;
 }
 
@@ -128,7 +128,7 @@
     width: 95%;
     flex-direction: column;
   }
-  .todos {
+  .tasks {
     width: 95%;
     margin-bottom: 10px;
   }

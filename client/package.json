@@ -19,6 +19,8 @@
     "react-scripts": "5.0.1",
     "redux": "^4.2.1",
     "typescript": "^4.9.4",
+    "uuid": "^9.0.0",
+    "uuid4": "^2.0.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -44,5 +46,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/uuid4": "^2.0.0"
   }
 }

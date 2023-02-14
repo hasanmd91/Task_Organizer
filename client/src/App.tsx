@@ -6,6 +6,7 @@ import "./App.css";
 import TaskList from "./Components/TaskList";
 
 export interface task {
+  [x: string]: any;
   title: string;
 }
 

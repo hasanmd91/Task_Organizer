@@ -14,7 +14,7 @@ app.use(cors());
 
 app.use("/tasks", router);
 
-const PORT = process.env.port || 5000;
+const PORT = process.env.port || 3001;
 
 mongoose
   .connect(process.env.CONNECETION_URL, {
