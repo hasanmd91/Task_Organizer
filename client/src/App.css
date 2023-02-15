@@ -1,7 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Neucha&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&display=swap");
 
 :root {
-  --backColor: #06c;
+  --backColor: rgb(21, 23, 23);
 }
 .App {
   width: 100vw;
@@ -10,14 +10,16 @@
   flex-direction: column;
   align-items: center;
   background-color: var(--backColor);
-  font-family: "Neucha", cursive;
+  font-family: "Poppins", sans-serif;
+  font-family: "Roboto", sans-serif;
+  color: white;
 }
 
 .heading {
   text-transform: uppercase;
   font-size: 40px;
   margin: 30px 0;
-  color: white;
+  color: #00bdf3;
   z-index: 1;
   text-align: center;
 }

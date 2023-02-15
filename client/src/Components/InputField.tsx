@@ -17,11 +17,16 @@ const InputField: React.FC<props> = ({
   currenId,
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
+
+  // If the current task ID is set, find the corresponding task in the tasks state and
+  //store it in editableTask
+
   const editableTask = useAppSelector((state) =>
     currenId ? state.tasks.tasks.find((t) => t._id === currenId) : null
   );
 
-  console.log(editableTask?.title, currenId);
+  // If an editable task exists, update newTask to reflect the task's current state
+
   useEffect(() => {
     if (editableTask) {
       setNewTask(editableTask);

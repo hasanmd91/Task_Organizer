@@ -29,27 +29,20 @@
   right: 0px;
   border: none;
   font-size: 15px;
-  background-color: #2f74c0;
-  color: white;
+  background-color: #161718;
+  color: #00bdf3;
   transition: 0.2s all;
   box-shadow: 0 0 10px black;
 }
 
 .input_submit:hover {
-  background-color: #388ae2;
+  background-color: #00bdf3;
+  color: white;
 }
 
 .input_submit:active {
   transform: scale(0.8);
   box-shadow: 0 0 5px black;
-}
-
-.container {
-  width: 95%;
-  display: flex;
-  margin-top: 10px;
-  justify-content: space-between;
-  align-items: flex-start;
 }
 
 .tasks {
@@ -58,25 +51,6 @@
   flex-direction: column;
   width: 47.5%;
   padding: 15px;
-  background-color: rgb(50, 195, 205);
-}
-
-.dragactive {
-  background-color: rgb(0, 221, 236);
-}
-
-.dragcomplete {
-  background-color: rgb(255, 38, 0);
-}
-
-.remove {
-  background-color: rgb(235, 103, 80);
-}
-
-.todos__heading {
-  font-size: 30px;
-  /* text-align: center; */
-  color: white;
 }
 
 .task_single {
@@ -84,15 +58,11 @@
   border-radius: 5px;
   padding: 20px;
   margin-top: 15px;
-  background-image: url("https://img.freepik.com/free-photo/crumpled-yellow-paper-background-close-up_60487-2390.jpg?size=626&ext=jpg");
+  background-color: #00bdf3;
   transition: 0.2s;
 }
 
-.drag {
-  box-shadow: 0 0 20px black;
-}
-
-.todos_single:hover {
+.task_single:hover {
   box-shadow: 0 0 5px black;
   transform: scale(1.03);
 }
@@ -102,9 +72,10 @@
   padding: 5px;
   border: none;
   font-size: 20px;
+  overflow: hidden;
 }
 
-.todos_single_text:focus {
+.tasks_single_text:focus {
   outline: none;
 }
 
@@ -112,6 +83,7 @@
   margin-left: 10px;
   font-size: 25px;
   cursor: pointer;
+  color: rgb(47, 46, 46);
 }
 
 @media (max-width: 1100px) {

@@ -1,5 +1,5 @@
 import axios from "axios";
-import path from "path";
+import { task } from "../App";
 
 const baseUrl = "http://localhost:3001/tasks";
 
@@ -8,7 +8,7 @@ export const getAll = async () => {
   return data;
 };
 
-export const Create = async (newtask: any) => {
+export const Create = async (newtask: task) => {
   const { data } = await axios.post(baseUrl, newtask);
   return data;
 };
@@ -17,7 +17,7 @@ export const Delete = async (id: string) => {
   await axios.delete(`${baseUrl}/${id}`);
 };
 
-export const Edit = async (newtask: any, id: string) => {
+export const Edit = async (newtask: task, id: string) => {
   const { data } = await axios.patch(`${baseUrl}/${id}`, newtask);
   return data;
 };

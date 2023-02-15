@@ -12,7 +12,7 @@ const TaskList: React.FC<props> = ({ setCurrenId }) => {
   return (
     <div className="tasks">
       {tasksList.map((task) => (
-        <SingleTask taskProps={task} setCurrenId={setCurrenId} />
+        <SingleTask taskProps={task} setCurrenId={setCurrenId} key={task._id} />
       ))}
     </div>
   );
