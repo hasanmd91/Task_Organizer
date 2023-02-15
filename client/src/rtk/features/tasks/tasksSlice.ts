@@ -3,6 +3,7 @@ import { getAll, Create, Delete, Edit } from "../../../services/api";
 import { AnyAction } from "redux";
 import { ThunkAction } from "redux-thunk";
 import { RootState } from "../../app/store";
+
 interface Task {
   [x: string]: string;
   title: string;
@@ -18,22 +19,20 @@ const initialState: TaskState = {
   isLoading: true,
 };
 
+// Create a new slice of the Redux store
 const tasksSlice = createSlice({
-  name: "tasks",
-  initialState,
+  name: "tasks", // Name of the slice
+  initialState, // Initial state
   reducers: {
     getTasks(state, action: PayloadAction<Task[]>) {
       state.tasks = action.payload;
     },
-
     createAtask(state, action: PayloadAction<Task>) {
       state.tasks = [...state.tasks, action.payload];
     },
-
     deleteATask(state, action: PayloadAction<string>) {
       state.tasks = state.tasks.filter((task) => task._id !== action.payload);
     },
-
     updateAtask(state, action: PayloadAction<Task>) {
       state.tasks = state.tasks.map((task) => {
         if (task._id === action.payload._id) {
@@ -42,15 +41,13 @@ const tasksSlice = createSlice({
         return task;
       });
     },
-
     isLoading(state) {
       state.isLoading = false;
     },
   },
 });
 
-//get task thunk
-
+// A thunk action that initializes tasks
 export const initializeTasks = (): ThunkAction<
   void,
   RootState,
@@ -64,8 +61,7 @@ export const initializeTasks = (): ThunkAction<
   };
 };
 
-//create task thunk
-
+// A thunk action that creates a new task
 export const createTask = (
   newTask: Task
 ): ThunkAction<void, RootState, unknown, AnyAction> => {
@@ -75,8 +71,7 @@ export const createTask = (
   };
 };
 
-// delete task thunk
-
+// A thunk action that deletes a task
 export const deleteTask = (
   id: string
 ): ThunkAction<void, RootState, unknown, AnyAction> => {
@@ -86,8 +81,7 @@ export const deleteTask = (
   };
 };
 
-// edit task thunk
-
+// A thunk action that edits an existing task
 export const editTask = (
   newtask: Task,
   id: string
@@ -98,6 +92,7 @@ export const editTask = (
   };
 };
 
+// Export the reducer and the action creators
 export default tasksSlice.reducer;
 export const { getTasks, isLoading, createAtask, deleteATask, updateAtask } =
   tasksSlice.actions;
