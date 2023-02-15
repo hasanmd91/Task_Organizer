@@ -1,6 +1,6 @@
 # Task organizer App
 
-Task Organizer is a web-based application designed to help users organize their tasks and manage their workload more efficiently. With Task Organizer, users can easily add, edit, and delete tasks.
+Task Organizer is a web-based application designed to help users organize their tasks and manage their workload more efficiently. With Task Organizer, users can easily add, update, and delete tasks.
 
 Task Organizer is built on a full-stack architecture, with a Node.js and Express backend that handles data storage and retrieval through a MongoDB database, and a React frontend that provides a responsive and dynamic user interface. The app uses Redux for state management and Axios for handling API requests.
 
