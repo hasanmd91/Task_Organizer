@@ -8,14 +8,16 @@ import router from "./Router/index.js";
 const app = express();
 dotenv.config();
 
+// Set up middleware to parse requests
 app.use(bodyparser.json({ limit: "30mb", extended: true }));
 app.use(bodyparser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
+// Mount the router at the '/tasks' endpoint
 app.use("/tasks", router);
 
+// Start the server
 const PORT = process.env.port || 3001;
-
 mongoose
   .connect(process.env.CONNECETION_URL, {
     useNewUrlParser: true,
@@ -24,8 +26,12 @@ mongoose
   .then(() =>
     app.listen(PORT, () => console.log(`server running on the port ${PORT}`))
   )
-  .catch((error) => console.log(error));
+  .catch((error) => {
+    console.log(`Failed to connect to MongoDB: ${error}`);
+    process.exit(1);
+  });
 
+// Log when the connection to the database is established
 mongoose.connection.on("open", () => {
   console.log("Mongoose connected.");
 });

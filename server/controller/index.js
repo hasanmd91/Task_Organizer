@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import postTask from "../model/schema.js";
 
-// get all tasks from the data base
+// Get all tasks
 export const getTasks = async (req, res) => {
   try {
     const postTasks = await postTask.find();
@@ -12,7 +12,7 @@ export const getTasks = async (req, res) => {
   }
 };
 
-// create new task
+// Create a new task
 export const createTask = async (req, res) => {
   const task = req.body;
   const newTask = new postTask(task);
@@ -25,12 +25,13 @@ export const createTask = async (req, res) => {
   }
 };
 
-// update a task
+// Update a task
 export const updateTask = async (req, res) => {
   const { id: _id } = req.params;
 
   const task = req.body;
 
+  // Validate the task ID
   if (!mongoose.Types.ObjectId.isValid(_id)) {
     return res.status(400).json({ message: "Invalid task ID" });
   }
@@ -52,11 +53,11 @@ export const updateTask = async (req, res) => {
   }
 };
 
-//delete a task
-
+// Delete a task
 export const deleteTask = async (req, res) => {
   const { id } = req.params;
 
+  // Validate the task ID
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).json({ message: "Invalid task ID" });
   }
