@@ -37,4 +37,4 @@ Task Organizer is built on a full-stack architecture, with a Node.js and Express
 
 ## Screenshots
 
-<img src="client\images\Task-manager.png" />
+<img src="client\Images\Task-manager.png" />
